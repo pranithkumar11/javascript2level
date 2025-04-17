@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String Operations</title>
+</head>
+<body>
+    <h2>Enter a String:</h2>
+    <input type="text" id="user-input" placeholder="Type something...">
+    <button onclick="processString()">Submit</button>
+
+    <h3 id="palindrome-output"></h3>
+    <h3 id="reverse-output"></h3>
+
+    <script>
+        function findLongestPalindrome(str) {
+            let longest = '';
+            for (let i = 0; i < str.length; i++) {
+                for (let j = i + 1; j <= str.length; j++) {
+                    const substring = str.slice(i, j);
+                    if (
+                        substring === substring.split('').reverse().join('') &&
+                        substring.length > longest.length
+                    ) {
+                        longest = substring;
+                    }
+                }
+            }
+            return longest;
+        }
+
+        function reverseString(str) {
+            return str.split('').reverse().join('');
+        }
+
+        function processString() {
+            const input = document.getElementById("user-input").value;
+            const longestPalindrome = findLongestPalindrome(input);
+            const reversed = reverseString(input);
+
+            document.getElementById("palindrome-output").innerText = `Longest Palindrome: ${longestPalindrome}`;
+            document.getElementById("reverse-output").innerText = `Reversed String: ${reversed}`;
+
+            console.log("Input:", input);
+            console.log("Longest Palindrome:", longestPalindrome);
+            console.log("Reversed:", reversed);
+        }
+    </script>
+</body>
+</html>
